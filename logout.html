@@ -1,1 +1,25 @@
-<!doctype html><html><head><meta charset="utf-8"><title>Log keluar...</title></head><body><p>Log keluar...</p><script>try{sessionStorage.clear()}catch(e){}try{localStorage.clear()}catch(e){}setTimeout(function(){location.href='./?logout='+Date.now()},300);</script></body></html>
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Log keluar...</title>
+</head>
+<body>
+<p>Log keluar...</p>
+<script>
+try{ sessionStorage.clear(); }catch(e){}
+try{
+  sessionStorage.removeItem('idt_ibs');
+  sessionStorage.removeItem('pic_ibs');
+  sessionStorage.removeItem('ap_ibs');
+  // JANGAN clear semua localStorage, nanti tema hilang.
+  // Hanya buang yang berkaitan login sahaja kalau ada.
+  localStorage.removeItem('pic_ibs');
+}catch(e){}
+setTimeout(function(){
+  location.href = './?logout=' + Date.now();
+}, 300);
+</script>
+</body>
+</html>
