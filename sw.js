@@ -7,3 +7,4 @@ self.addEventListener('activate', e => {
     .then(() => self.registration.unregister())
   );
 });
+self.addEventListener('fetch', e => { e.respondWith(fetch(e.request)); });
