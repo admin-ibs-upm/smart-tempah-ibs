@@ -95,7 +95,7 @@ window.__run = function runner(ok, fail) {
     });
   }});
 };
-if ('serviceWorker' in navigator) {   navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister()));   if (window.caches) caches.keys().then(ks => ks.forEach(k => caches.delete(k))); }
+// service worker dimatikan buat sementara
 </script>
 <script>
 (function(){
