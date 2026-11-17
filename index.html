@@ -78,6 +78,9 @@ details.mn{position:relative}details.mn summary{list-style:none;cursor:pointer;w
 .lgh h2{margin:0;font-size:26px;color:var(--ac);letter-spacing:-.02em}
 #gbtn{display:flex;justify-content:center;margin:22px 0 4px}
 .lgn{font-size:12px;color:var(--mut);text-align:center;margin-top:22px;line-height:1.6}
+.pull{z-index:2}
+.phd{align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin-bottom:12px;box-shadow:0 6px 18px rgba(0,0,0,.12)}
+.phd b{color:var(--ink)}
 </style></head><body>
 <div class="top"><div class="w bar"><div class="brand"><div class="logo">🎓</div><div><b>Smart Tempah IBS</b><small>Institut Biosains, UPM</small></div></div><div id="nav"></div><button id="gear" title="Tema warna">⚙️</button></div><div id="thm"></div></div>
 <div class="hero"><div class="w"><h1>Portal Tempahan Institut Biosains</h1><p>Tempah bilik, makanan, peralatan ICT dan persidangan video dengan mudah, cepat dan telus.</p><button class="btn" data-go="room">🏢 Tempah Bilik</button><button class="btn g" data-go="prog">🎁 Tempah Pakej</button><button class="btn g" data-go="cal">📅 Lihat Kalendar</button><a class="btn g" href="https://docs.google.com/forms/d/18uTWZLaq2U1vwMluwd3g4ejy6yYtf48dWYuVAjRXXfQ/viewform" target="_blank" rel="noopener">📝 Borang Aduan</a></div></div>
@@ -488,7 +491,7 @@ return'<div class="card"><div class="ut">'+S.map(s=>'<button type="button" class
 '<div class="fr">'+sel+'<input id="fq" placeholder="Cari nama, tujuan, bilik atau unit" value="'+esc(pf.q)+'"><button type="button" class="btn s" data-a2="wkopen">⬇️ PDF Mingguan</button></div>'+(cur[3]?'<div class="hn">'+cur[3]+'</div>':'')+picList(cur[2],'u'+ut)+'</div>'}
 function panel(){if(!me)return login();const[role,ty]=PIC[me],adm=role=='Admin',q=D.filter(b=>ty.includes(b.t)&&b.st=='Menunggu');
 const tabs=[['urus','📁 Pengurusan Tempahan ('+q.length+')']].concat(adm?[['stat','📊 Statistik'],['blok','⛔ Sekat Slot'],['notis','📢 Notis']]:[]);if(!tabs.some(t=>t[0]==ptab))ptab='urus';
-let h='<div class="row" style="margin-bottom:12px"><div><b>'+role+'</b><div class="mut">'+esc(me)+'</div></div><button type="button" class="btn r" data-a2="logout">Log keluar</button></div><div class="tabs">'+tabs.map(t=>'<button class="btn '+(t[0]==ptab?'':'s')+'" data-tab="'+t[0]+'">'+t[1]+'</button>').join('')+'</div>';
+let h='<div class="row phd"><div><b>'+role+'</b><div class="mut">'+esc(me)+'</div></div><button type="button" class="btn r" data-a2="logout">Log keluar</button></div><div class="tabs">'+tabs.map(t=>'<button class="btn '+(t[0]==ptab?'':'s')+'" data-tab="'+t[0]+'">'+t[1]+'</button>').join('')+'</div>';
 if(ptab=='urus')h+=urus(ty);
 if(ptab=='stat')h+=statTab();
 if(ptab=='blok')h+='<div class="card"><h2>⛔ Sekat slot</h2><div class="g2" style="gap:10px"><div><label>Bilik</label><select id="br"><option value="">Pilih</option>'+opts(Object.keys(ROOMS))+'</select></div><div><label>Sebab</label><input id="bw"></div><div><label>Tarikh mula</label><input type="date" id="b1"></div><div><label>Tarikh tamat</label><input type="date" id="b2"></div></div><button class="btn w" data-a2="blk">Sekat slot</button>'+B.map((x,i)=>'<div class="item row"><span>'+esc(x.bilik)+' · '+fd(x.d1)+'–'+fd(x.d2)+' · '+esc(x.why)+'</span><button class="btn r" data-a2="ub" data-i="'+i+'">Buang</button></div>').join('')+'</div>';
