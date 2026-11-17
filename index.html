@@ -557,7 +557,8 @@ if(t.id=='ft'){pf={t:t.value,q:($('#fq')||{}).value||''};pg={};render(true);retu
 if(t.id=='wkc'){wk.c=t.value;return}if(t.id=='wkd'){wk.d=t.value;return}
 if(t.name=='rok'){$('#rjw').classList.toggle('hide',t.value!='Tidak');return}if(t.id=='pm'){pm=t.checked;const fs=$('#ff');if(fs)fs.disabled=!pm;return}if(t.id=='cfr'){cf.r=t.value;pg={};render(true)}if(t.id=='cft'){cf.t=t.value;pg={};render(true)}
 if(['rd1','rd2','rt','rm','ry'].includes(t.id)){sf={d1:$('#rd1').value,d2:$('#rd2').value,t:$('#rt').value,m:$('#rm').value,y:$('#ry').value,show:sf.show,k:''};pg={};render(true)}});
-window.ROOMS=ROOMS;window.BUILT=BUILT;
+document.addEventListener('click',e=>{const b=e.target.closest('[data-a2="logout"]');if(!b)return;e.preventDefault();e.stopPropagation();me=null;ptab='urus';ut='tunggu';try{sessionStorage.removeItem('idt_ibs');sessionStorage.removeItem('pic_ibs')}catch(_){}try{google.accounts.id.disableAutoSelect()}catch(_){}view='home';render();scrollTo(0,0)},true);
+  window.ROOMS=ROOMS;window.BUILT=BUILT;
 render();load();
 })();
 </script></body></html>
