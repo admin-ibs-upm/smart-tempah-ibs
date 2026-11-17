@@ -540,7 +540,8 @@ if(k=='chg'){ap=null;try{sessionStorage.removeItem('ap_ibs')}catch(_){}document.
 if(k=='rst'){sf={d1:'',d2:'',t:'',m:'',y:'',show:false,k:''};pg={};render(true);return}
 if(k=='login'){const em=$('#le').value.trim().toLowerCase();if(!PIC[em]){$('#lm').innerHTML='<div class="msg">Emel tidak berdaftar.</div>';return}me=em;try{sessionStorage.setItem('pic_ibs',em)}catch(_){}render()}
 if(k=='blk'){const r=$('#br').value,a=$('#b1').value,b=$('#b2').value,w=$('#bw').value.trim();if(!r||!a||!b||b<a||!w)return alert('Lengkapkan bilik, tarikh (tamat ≥ mula) dan sebab.');B.push({bilik:r,d1:a,d2:b,why:w});saveMeta();render(true)}
-if(k=='ub'){B.splice(i,1);saveMeta();render(true)}
+if(k=='logout'){me=null;ptab='urus';try{sessionStorage.removeItem('idt_ibs');sessionStorage.removeItem('pic_ibs')}catch(_){}try{google.accounts.id.disableAutoSelect()}catch(_){}render();scrollTo(0,0);return}
+                                      if(k=='ub'){B.splice(i,1);saveMeta();render(true)}
 if(k=='ann'){const v=$('#an').value.trim();if(v){A.push(v);saveMeta();render(true)}}
 if(k=='en'){pkAsk({t:'Edit notis',l:'Teks notis',v:A[i],multi:1,req:1,ok:v=>{A[i]=v;saveMeta();render(true)}});return}
 if(k=='rm'){A.splice(i,1);saveMeta();render(true)}});
