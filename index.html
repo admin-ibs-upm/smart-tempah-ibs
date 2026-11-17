@@ -71,6 +71,13 @@ details.mn{position:relative}details.mn summary{list-style:none;cursor:pointer;w
 .item.cdt{display:flex;gap:12px;align-items:flex-start}.item.cdt .pr-d{flex:0 0 58px}.item.cdt .cdm{flex:1;min-width:0}
 /* ===== Tetingkap dialog / Sahkan Pulang ===== */
 .ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:60;display:grid;place-items:center;padding:14px}.mb{max-width:420px;width:100%;max-height:90vh;overflow:auto}
+/* ===== Kad log masuk PIC / Admin ===== */
+.lgc{max-width:430px;margin:24px auto;padding:30px 30px 26px;border-radius:20px;box-shadow:0 18px 50px rgba(0,0,0,.12)}
+.lgh{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.lgi{width:38px;height:38px;border-radius:50%;background:var(--soft);display:grid;place-items:center;font-size:18px;flex:0 0 38px}
+.lgh h2{margin:0;font-size:26px;color:var(--ac);letter-spacing:-.02em}
+#gbtn{display:flex;justify-content:center;margin:22px 0 4px}
+.lgn{font-size:12px;color:var(--mut);text-align:center;margin-top:22px;line-height:1.6}
 </style></head><body>
 <div class="top"><div class="w bar"><div class="brand"><div class="logo">🎓</div><div><b>Smart Tempah IBS</b><small>Institut Biosains, UPM</small></div></div><div id="nav"></div><button id="gear" title="Tema warna">⚙️</button></div><div id="thm"></div></div>
 <div class="hero"><div class="w"><h1>Portal Tempahan Institut Biosains</h1><p>Tempah bilik, makanan, peralatan ICT dan persidangan video dengan mudah, cepat dan telus.</p><button class="btn" data-go="room">🏢 Tempah Bilik</button><button class="btn g" data-go="prog">🎁 Tempah Pakej</button><button class="btn g" data-go="cal">📅 Lihat Kalendar</button><a class="btn g" href="https://docs.google.com/forms/d/18uTWZLaq2U1vwMluwd3g4ejy6yYtf48dWYuVAjRXXfQ/viewform" target="_blank" rel="noopener">📝 Borang Aduan</a></div></div>
@@ -345,12 +352,12 @@ const ent=bs.slice(0,4).map(b=>'<div class="ce" style="border-left:3px solid '+T
 c+='<div class="cc '+(free<=0?'full':bs.length?'has':'')+' '+(i==td?'today':'')+'" data-day="'+i+'"><b class="dn">'+d+'</b><div class="av">'+(free<=0?'PENUH':free+'/'+nr+' bilik')+'</div>'+ent+'<span class="cnt">'+badge+'</span></div>'}
 const ds=sel&&D.filter(b=>fl(b)&&b.d1<=sel&&e2(b)>=sel);
 return top+'<div class="cal2" style="margin-top:12px">'+c+'</div>'+(sel?'<h3>'+fd(sel)+'</h3>'+list(ds,'','Tiada tempahan.','cd'):'<p class="mut">Hijau/biru = ada tempahan · <b style="color:#b91c1c">Merah = semua bilik penuh/disekat</b> · Klik tarikh untuk butiran.</p>')+'</div>'}
-const login=()=>'<div class="card" style="max-width:420px;margin:auto"><h2>🛡️ Log masuk PIC / Admin</h2><p class="mut">Log masuk dengan akaun Google UPM anda.</p><div id="gbtn"></div></div>';
+const login=()=>'<div class="card lgc"><div class="lgh"><div class="lgi">🔑</div><h2>Log Masuk</h2></div><div class="mut">Log masuk dengan akaun Google UPM anda.</div><div id="gbtn"></div><div class="lgn">Untuk PIC / Admin sahaja.<br>Emel mesti berdaftar dalam sistem.</div></div>';
 function initG(){
-  const el=document.getElementById('gbtn');
-  if(!el)return;
-  if(!window.google||!google.accounts){return setTimeout(initG,300)}
-  google.accounts.id.initialize({client_id:CLIENT_ID,callback:r=>{
+const el=document.getElementById('gbtn');
+if(!el)return;
+if(!window.google||!google.accounts){return setTimeout(initG,300)}
+google.accounts.id.initialize({client_id:CLIENT_ID,callback:r=>{
     const p=JSON.parse(atob(r.credential.split('.')[1].replace(/-/g,'+').replace(/_/g,'/')));
     const em=(p.email||'').toLowerCase();
     if(!PIC[em]){alert('Emel ini tidak berdaftar sebagai PIC/Admin.');return}
